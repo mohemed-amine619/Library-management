@@ -1,8 +1,25 @@
 import Pagination from "@/Components/Pagination";
+import { PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP } from "@/Constants.js";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
-export default function Index ({auth,projects}) {
-
+import { Head, router } from "@inertiajs/react";
+import  TextInput  from '@/Components/TextInput';
+import Selectinput from "@/Components/Selectinput";
+export default function Index ({auth,projects,queryParams = null }) {
+    queryParams = queryParams || {}
+    const searchFieldChange = (name,value) => {
+        if(value){
+            queryParams[name] = value;
+        }else{
+            delete queryParams[name]
+           
+        }
+        router.get(route('Project.index',queryParams))
+    }
+    const onKeyPress = (name , e) => {
+        if(e.key !== "Enter") return;
+        
+        searchFieldChange(name,e.target.value);
+    }
     return(
     <AuthenticatedLayout
     user={auth} 
@@ -20,26 +37,61 @@ export default function Index ({auth,projects}) {
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400
                             border-b-2 border-gray-500">
                                 <tr className="text-nowrap">
-                                    <th className="px-3 py-2">ID</th>
-                                    <th className="px-3 py-2">IMAGE</th>
-                                    <th className="px-3 py-2">NAME</th>
-                                    <th className="px-3 py-2">STATUS</th>
-                                    <th className="px-3 py-2">CREATE DATE</th>
-                                    <th className="px-3 py-2">DUE DATE</th>
-                                    <th className="px-3 py-2">CREATED BY</th>
-                                    <th className="px-3 py-2">ACTIONS</th>
+                                    <th className="px-3 py-3">ID</th>
+                                    <th className="px-3 py-3">IMAGE</th>
+                                    <th className="px-3 py-3">NAME</th>
+                                    <th className="px-3 py-3">STATUS</th>
+                                    <th className="px-3 py-3">CREATE DATE</th>
+                                    <th className="px-3 py-3">DUE DATE</th>
+                                    <th className="px-3 py-3">CREATED BY</th>
+                                    <th className="px-3 py-3">ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400
+                            border-b-2 border-gray-500">
+                                <tr className="text-nowrap">
+                                    <th className="px-3 py-3"></th>
+                                    <th className="px-3 py-3"></th>
+                                    <th className="px-3 py-3">
+                                        <TextInput className="w-full " 
+                                        defaultValue={queryParams.name}
+                                        placeholder = "Project Name"
+                                        onBlur = {e => searchFieldChange("name" , e.target.vakue)}
+                                        onKeyPress = {e => onKeyPress('name',e)}
+                                        />
+                                    </th>
+                                    <th className="px-3 py-3">
+                                        <Selectinput defaultValue = {queryParams.status} className="w-full"onChange= {e => searchFieldChange("status", e.target.value)}>
+                                            <option value="">select Status</option>
+                                            <option value="pending">pending</option>
+                                            <option value="in_progress">in progress</option>
+                                            <option value="completed">completed</option>
+                                        </Selectinput>
+                                    </th>
+                                    <th className="px-3 py-3"></th>
+                                    <th className="px-3 py-3"></th>
+                                    <th className="px-3 py-3"></th>
+                                    <th className="px-3 py-3"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
                                     projects.data.map(project => (
-                                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={project.id}>
                                            <td>{project.id}</td>
                                            <td>
                                             <img src={project.image_path} style={{width:60} } />
                                            </td>
                                            <td>{project.name}</td>
-                                           <td>{project.status}</td>
+                                           <td>
+                                            <span
+                                            className={
+                                                "px-2 py-1 rounded text-white " + PROJECT_STATUS_CLASS_MAP[project.status]
+                                            }
+                                            >
+                                            {PROJECT_STATUS_TEXT_MAP[project.status]}
+                                            </span>
+                                            </td>
                                            <td>{project.created_at}</td>
                                            <td>{project.due_date}</td>
                                            <td>{project.created_by.name}</td>
