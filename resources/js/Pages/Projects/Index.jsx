@@ -1,7 +1,7 @@
 import Pagination from "@/Components/Pagination";
 import { PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP } from "@/Constants.js";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, router } from "@inertiajs/react";
+import { Head, router ,Link } from "@inertiajs/react";
 import  TextInput  from '@/Components/TextInput';
 import Selectinput from "@/Components/Selectinput";
 export default function Index ({auth,projects,queryParams = null }) {
@@ -20,6 +20,19 @@ export default function Index ({auth,projects,queryParams = null }) {
         
         searchFieldChange(name,e.target.value);
     }
+    const sortedChange = (name) => {
+        if(name == queryParams.sort_field){
+            if(queryParams.sort_direction == 'asc' ){
+                queryParams.sort_direction = "desc"
+            } else {
+                queryParams.sort_direction = "asc"
+            }
+        } else {
+            queryParams.sort_field = name ;
+            queryParams.sort_direction = 'asc'
+        } 
+        router.get(route('Project.index') , queryParams);
+    }
     return(
     <AuthenticatedLayout
     user={auth} 
@@ -37,14 +50,87 @@ export default function Index ({auth,projects,queryParams = null }) {
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400
                             border-b-2 border-gray-500">
                                 <tr className="text-nowrap">
-                                    <th className="px-3 py-3">ID</th>
-                                    <th className="px-3 py-3">IMAGE</th>
-                                    <th className="px-3 py-3">NAME</th>
-                                    <th className="px-3 py-3">STATUS</th>
-                                    <th className="px-3 py-3">CREATE DATE</th>
-                                    <th className="px-3 py-3">DUE DATE</th>
-                                    <th className="px-3 py-3">CREATED BY</th>
-                                    <th className="px-3 py-3">ACTIONS</th>
+                                    <th
+                                     onClick={(e) => sortedChange('id')}
+                                     className="px-3 py-3 ">
+                                        <div className="flex items-center justify-between gap-1 cursor-pointer">
+                                              ID  
+                                            <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4">
+                                              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4 -mt-2">
+                                              <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                            </svg>
+                                            </div>
+                                        </div>
+                                        </th>
+                                    <th
+                                     className="px-3 py-3">IMAGE</th>
+                                    <th
+                                     onClick={(e) => sortedChange('name')}
+                                     className="px-3 py-3">
+                                        <div className="flex items-center justify-between gap-1 cursor-pointer">
+                                              Name
+                                              <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4">
+                                              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4 -mt-2">
+                                              <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                            </svg>
+                                            
+                                            </div>
+                                        </div>
+                                     </th>
+                                    <th
+                                     onClick={(e) => sortedChange('status')}
+                                     className="px-3 py-3">
+                                        <div className="flex items-center justify-between gap-1 cursor-pointer">
+                                              status 
+                                            <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4">
+                                              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4 -mt-2">
+                                              <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                            </svg>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th
+                                     onClick={(e) => sortedChange('created_at')}
+                                     className="px-3 py-3">
+                                        <div className="flex items-center justify-between gap-1 cursor-pointer ">
+                                            CREATE DATE
+                                            <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4">
+                                              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4 -mt-2">
+                                              <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                            </svg>
+                                            </div>
+                                        </div>
+                                        </th>
+                                    <th
+                                     onClick={(e) => sortedChange('due_date')}
+                                     className="px-3 py-3"><div className="flex items-center justify-between gap-1 cursor-pointer ">
+                                     due date
+                                     <div>
+                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 " + (queryParams.sort_field === "due_date" && queryParams.sort_direction === "asc" ? "text-white" : " ")}>
+                                       <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                     </svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 -mt-2 " + (queryParams.sort_field === "due_date" && queryParams.sort_direction === "desc" ? "text-white" : " ")}>
+                                       <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                     </svg>
+                                     </div>
+                                    </div>
+                                    </th>
+                                    <th
+                                     className="px-3 py-3">CREATED BY</th>
+                                    <th
+                                     className="px-3 py-3">ACTIONS</th>
                                 </tr>
                             </thead>
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400
@@ -95,7 +181,21 @@ export default function Index ({auth,projects,queryParams = null }) {
                                            <td>{project.created_at}</td>
                                            <td>{project.due_date}</td>
                                            <td>{project.created_by.name}</td>
-                                           <td></td>
+                                           <td className="px-3 py-2 text-nowrap">
+                                            <Link
+                                              href='#'
+                                              className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-1"
+                                            >
+                                              Edit
+                                            </Link>
+                                            <button
+                                              onClick={(e) => console.log(e.currentTarget)}
+                                              className="font-medium text-red-600 dark:text-red-500 hover:underline mx-1"
+                                             
+                                            >
+                                              Delete
+                                            </button>
+                                          </td>
                                         </tr>
                                    ))
                                 }
