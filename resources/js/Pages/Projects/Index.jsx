@@ -4,6 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, router ,Link } from "@inertiajs/react";
 import  TextInput  from '@/Components/TextInput';
 import Selectinput from "@/Components/Selectinput";
+import TableHeading from './../../Components/TableHeading';
 export default function Index ({auth,projects,queryParams = null }) {
     queryParams = queryParams || {}
     const searchFieldChange = (name,value) => {
@@ -31,7 +32,7 @@ export default function Index ({auth,projects,queryParams = null }) {
             queryParams.sort_field = name ;
             queryParams.sort_direction = 'asc'
         } 
-        router.get(route('Project.index') , queryParams);
+      router.get(route('Project.index') , queryParams);
     }
     return(
     <AuthenticatedLayout
@@ -50,83 +51,50 @@ export default function Index ({auth,projects,queryParams = null }) {
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400
                             border-b-2 border-gray-500">
                                 <tr className="text-nowrap">
+                                    <TableHeading
+                                    name = "id"
+                                    sort_direction={queryParams.sort_direction}
+                                    sort_field={queryParams.sort_field}
+                                    sortedChange={sortedChange}
+                                    >
+                                        ID
+                                    </TableHeading>
                                     <th
-                                     onClick={(e) => sortedChange('id')}
-                                     className="px-3 py-3 ">
-                                        <div className="flex items-center justify-between gap-1 cursor-pointer">
-                                              ID  
-                                            <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 " + (queryParams.sort_field === "id" && queryParams.sort_direction === "asc" ? "text-white" : " ")}>
-                                              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                                            </svg>
-                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 -mt-2 " + (queryParams.sort_field === "id" && queryParams.sort_direction === "desc" ? "text-white" : " ")}>
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                            </svg>
-                                            </div>
-                                        </div>
-                                        </th>
-                                    <th
-                                     className="px-3 py-3">IMAGE</th>
-                                    <th
-                                     onClick={(e) => sortedChange('name')}
-                                     className="px-3 py-3">
-                                        <div className="flex items-center justify-between gap-1 cursor-pointer">
-                                              Name
-                                              <div>
-                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 " + (queryParams.sort_field === "name" && queryParams.sort_direction === "asc" ? "text-white" : " ")}>
-                                               <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                                             </svg>
-                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 -mt-2 " + (queryParams.sort_field === "name" && queryParams.sort_direction === "desc" ? "text-white" : " ")}>
-                                               <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                             </svg>
-                                            
-                                            </div>
-                                        </div>
+                                     className="px-3 py-3">IMAGE
                                      </th>
-                                    <th
-                                     onClick={(e) => sortedChange('status')}
-                                     className="px-3 py-3">
-                                        <div className="flex items-center justify-between gap-1 cursor-pointer">
-                                              status 
-                                            <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 " + (queryParams.sort_field === "status" && queryParams.sort_direction === "asc" ? "text-white" : " ")}>
-                                               <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                                            </svg>
-                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 -mt-2 " + (queryParams.sort_field === "status" && queryParams.sort_direction === "desc" ? "text-white" : " ")}>
-                                               <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                          </svg>
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th
-                                     onClick={(e) => sortedChange('created_at')}
-                                     className="px-3 py-3">
-                                        <div className="flex items-center justify-between gap-1 cursor-pointer ">
-                                            CREATE DATE
-                                            <div>
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 " + (queryParams.sort_field === "created_at" && queryParams.sort_direction === "asc" ? "text-white" : " ")}>
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                                                </svg>
-                                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 -mt-2 " + (queryParams.sort_field === "created_at" && queryParams.sort_direction === "desc" ? "text-white" : " ")}>
-                                                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                               </svg>
-                                            </div>
-                                        </div>
-                                        </th>
-                                    <th
-                                     onClick={(e) => sortedChange('due_date')}
-                                     className="px-3 py-3"><div className="flex items-center justify-between gap-1 cursor-pointer ">
-                                     due date
-                                     <div>
-                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 " + (queryParams.sort_field === "due_date" && queryParams.sort_direction === "asc" ? "text-white" : " ")}>
-                                       <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                                     </svg>
-                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 -mt-2 " + (queryParams.sort_field === "due_date" && queryParams.sort_direction === "desc" ? "text-white" : " ")}>
-                                       <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                     </svg>
-                                     </div>
-                                    </div>
-                                    </th>
+                                    <TableHeading
+                                    name = "name"
+                                    sort_direction={queryParams.sort_direction}
+                                    sort_field={queryParams.sort_field}
+                                    sortedChange={sortedChange}
+                                    >
+                                        NAME
+                                    </TableHeading>
+                                    <TableHeading
+                                    name = "status"
+                                    sort_direction={queryParams.sort_direction}
+                                    sort_field={queryParams.sort_field}
+                                    sortedChange={sortedChange}
+                                    >
+                                        STATUS
+                                    </TableHeading>
+                                    <TableHeading
+                                    name = "created_at"
+                                    sort_direction={queryParams.sort_direction}
+                                    sort_field={queryParams.sort_field}
+                                    sortedChange={sortedChange}
+                                    >
+                                        CREATED AT
+                                    </TableHeading>
+                                    <TableHeading
+                                    name = "due_date"
+                                    sort_direction={queryParams.sort_direction}
+                                    sort_field={queryParams.sort_field}
+                                    sortedChange={sortedChange}
+                                    >
+                                        DUE DATE
+                                    </TableHeading>
+                                    
                                     <th
                                      className="px-3 py-3">CREATED BY</th>
                                     <th

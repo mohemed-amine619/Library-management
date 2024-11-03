@@ -9,7 +9,7 @@ use App\Http\Requests\UpdateProjectRequest;
 
 class ProjectController extends Controller
 {
-    /**
+    /*
      * Display a listing of the resource.
      */
     public function index()
@@ -53,7 +53,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Project $project)
+    public function show(Project $project) 
     {
         //
     }
