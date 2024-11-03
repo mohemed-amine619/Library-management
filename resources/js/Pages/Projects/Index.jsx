@@ -56,11 +56,11 @@ export default function Index ({auth,projects,queryParams = null }) {
                                         <div className="flex items-center justify-between gap-1 cursor-pointer">
                                               ID  
                                             <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 " + (queryParams.sort_field === "id" && queryParams.sort_direction === "asc" ? "text-white" : " ")}>
                                               <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
                                             </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4 -mt-2">
-                                              <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 -mt-2 " + (queryParams.sort_field === "id" && queryParams.sort_direction === "desc" ? "text-white" : " ")}>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                             </svg>
                                             </div>
                                         </div>
@@ -73,12 +73,12 @@ export default function Index ({auth,projects,queryParams = null }) {
                                         <div className="flex items-center justify-between gap-1 cursor-pointer">
                                               Name
                                               <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4">
-                                              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4 -mt-2">
-                                              <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                            </svg>
+                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 " + (queryParams.sort_field === "name" && queryParams.sort_direction === "asc" ? "text-white" : " ")}>
+                                               <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                             </svg>
+                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 -mt-2 " + (queryParams.sort_field === "name" && queryParams.sort_direction === "desc" ? "text-white" : " ")}>
+                                               <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                             </svg>
                                             
                                             </div>
                                         </div>
@@ -89,12 +89,12 @@ export default function Index ({auth,projects,queryParams = null }) {
                                         <div className="flex items-center justify-between gap-1 cursor-pointer">
                                               status 
                                             <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4">
-                                              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 " + (queryParams.sort_field === "status" && queryParams.sort_direction === "asc" ? "text-white" : " ")}>
+                                               <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
                                             </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4 -mt-2">
-                                              <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                            </svg>
+                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 -mt-2 " + (queryParams.sort_field === "status" && queryParams.sort_direction === "desc" ? "text-white" : " ")}>
+                                               <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                          </svg>
                                             </div>
                                         </div>
                                     </th>
@@ -104,12 +104,12 @@ export default function Index ({auth,projects,queryParams = null }) {
                                         <div className="flex items-center justify-between gap-1 cursor-pointer ">
                                             CREATE DATE
                                             <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4">
-                                              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 w-4 -mt-2">
-                                              <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                            </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 " + (queryParams.sort_field === "created_at" && queryParams.sort_direction === "asc" ? "text-white" : " ")}>
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                                </svg>
+                                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"size-4 w- 4 -mt-2 " + (queryParams.sort_field === "created_at" && queryParams.sort_direction === "desc" ? "text-white" : " ")}>
+                                                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                               </svg>
                                             </div>
                                         </div>
                                         </th>
