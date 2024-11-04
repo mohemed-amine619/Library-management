@@ -130,6 +130,7 @@ export default function Index ({auth,projects,queryParams = null }) {
                             </thead>
                             <tbody>
                                 {
+                                   
                                     projects.data.map(project => (
                                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={project.id}>
                                            <td>{project.id}</td>
