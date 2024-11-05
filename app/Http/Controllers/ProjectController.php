@@ -25,14 +25,14 @@ class ProjectController extends Controller
             $query->where("status",request('status'));
         }
         $projects = $query
-                    ->orderBy($sortField , $sortDirection) 
+                    ->orderBy($sortField , $sortDirection)
                     -> paginate(10)
                     ->onEachside(1);
             return inertia("Projects/Index",[
                     'projects' => ProjectResource::collection($projects),
                     'queryParams' => request() -> query() ?: null,
             ]);
-    } 
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -53,7 +53,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Project $project) 
+    public function show(Project $project)
     {
         //
     }
