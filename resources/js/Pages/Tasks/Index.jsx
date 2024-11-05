@@ -5,7 +5,7 @@ import { Head, router ,Link } from "@inertiajs/react";
 import  TextInput  from '@/Components/TextInput';
 import Selectinput from "@/Components/Selectinput";
 import TableHeading from './../../Components/TableHeading';
-export default function Index ({auth,tasks,queryParams = null }) {
+export default function Index ({auth,tasks,queryParams = null}) {
     queryParams = queryParams || {}
     const searchFieldChange = (name,value) => {
         if(value){
