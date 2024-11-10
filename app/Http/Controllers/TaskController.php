@@ -30,8 +30,8 @@ class TaskController extends Controller
                     -> paginate(30)
                     ->onEachside(1);
             return inertia("Tasks/Index",[
-                    'tasks' => TaskResource::collection($tasks),
-                    'queryParams' => request() -> query() ?: null,
+                    'Tasks' => TaskResource::collection($tasks),
+                    'QueryParams' => request() -> query() ?: null,
        ]);
     }
 
