@@ -19,7 +19,7 @@ export default function AuthenticatedLayout({ header, children }) {
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                                    <ApplicationLogo className="block h-14 w-auto fill-current text-gray-800 dark:text-gray-200" />
                                 </Link>
                             </div>
 
@@ -49,7 +49,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                     User
                                 </NavLink>
                             </div>
-                            
+
                         </div>
 
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">

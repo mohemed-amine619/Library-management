@@ -14,6 +14,9 @@ class UserController extends Controller
     public function index()
     {
         //
+        $query = User::query();
+        $user = $query->orderby('id','desc')->get(['id','name']);
+        return $user;
     }
 
     /**
