@@ -33,6 +33,13 @@ export default function Index ({auth,projects,queryParams = null , success}) {
             queryParams.sort_direction = 'asc'
         }
       router.get(route('Project.index') , queryParams);
+
+    }
+    const deleteproject = (Project) => {
+      if(!window.confirm('Are you want to delete the project')) {
+        return ;
+      }
+       router.delete(route("Project.destroy",Project.id));
     }
     return(
     <AuthenticatedLayout
@@ -154,7 +161,7 @@ export default function Index ({auth,projects,queryParams = null , success}) {
                                             {project.name}
                                             </Link>
                                            </th>
-                                           <td className="px-3 py-2">
+                                           <td className="px-3 py-2 text-nowrap">
                                             <span
                                             className={
                                                 "px-2 py-1 rounded text-white " + PROJECT_STATUS_CLASS_MAP[project.status]
@@ -168,13 +175,13 @@ export default function Index ({auth,projects,queryParams = null , success}) {
                                            <td className="px-3 py-2">{project.created_by.name}</td>
                                            <td className="px-3 py-2 text-nowrap">
                                             <Link
-                                              href='#'
+                                              href={route("Project.edit",project.id)}
                                               className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-1"
                                             >
                                               Edit
                                             </Link>
                                             <button
-                                              onClick={(e) => console.log(e.currentTarget)}
+                                              onClick={(e)=> deleteproject(project)}
                                               className="font-medium text-red-600 dark:text-red-500 hover:underline mx-1"
 
                                             >

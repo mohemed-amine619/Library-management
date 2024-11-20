@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use App\Http\Resources\ProjectResource;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
@@ -52,11 +54,15 @@ class ProjectController extends Controller
     {
         //
         $data = $request->validated();
-        $data["created_by"] = Auth::id();
+         /**  @var $image Illuminate\Http\\UploadedFile  */
+        $image = $data['image'] ?? null ;
+        $data['created_by'] = Auth::id();
         $data['updated_by'] = Auth::id();
+        if($image) {
+               $data['image_path'] =  $image->store("project/".Str::random() , "public");
+        }
         Project::create($data);
         return to_route("Project.index")->with("success","projet created with success");
-
     }
 
     /**
@@ -89,24 +95,49 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(Project $Project)
     {
         //
+        return inertia("Projects/Edit",[
+           "project" => new ProjectResource($Project)
+    ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $Project)
     {
         //
+        $data = $request->validated();
+        /**  @var $image Illuminate\Http\\UploadedFile  */
+        $image = $data['image'] ?? null ;
+        $data['updated_by'] = Auth::id();
+        if($image) {
+            if ($Project->image_path) {
+                Storage::disk('public')->deleteDirectory(dirname($Project->image_path));
+            }
+               $data['image_path'] =  $image->store("project/".Str::random() , "public");
+        }
+
+        $Project->update($data);
+        return to_route("Project.index")->with('success' , "Project \" $Project->name \" was updated") ;
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project)
+    public function destroy(Project $Project)
     {
         //
+        $name = $Project->name;
+        $Project->delete();
+        if ($Project->image_path) {
+            Storage::disk('public')->deleteDirectory(dirname($Project->image_path));
+        }
+        return to_route('Project.index')
+            ->with('success', "Project \"$name\" was deleted");
     }
+
 }
