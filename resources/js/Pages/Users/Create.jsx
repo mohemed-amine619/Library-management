@@ -14,7 +14,7 @@ export default function Create(auth) {
   })
   const onSubmit = (e) => {
     e.preventDefault();
-    post(route('USER.store'))
+    post(route('user.store'))
   }
 
   return (
@@ -69,20 +69,6 @@ export default function Create(auth) {
                                     />
                               </div>
                               <div className="mt-4">
-                                    <InputLabel htmlFor="USER_email" value="USER Email" />
-                                    <TextInput
-                                    id="USER_EMAIL"
-                                    type="text"
-                                    name="email"
-                                    value={data.email}
-                                    className="mt-1 h-10 block w-full"
-                                    onChange={e => setData('email' , e.target.value)}
-                                    />
-                                    <InputError
-                                    message={errors.email} className="mt-2"
-                                    />
-                              </div>
-                              <div className="mt-4">
                                     <InputLabel htmlFor="USER_password" value="USER password" />
                                     <TextInput
                                     id="USER_password"
@@ -102,7 +88,7 @@ export default function Create(auth) {
                                     id="USER_password_confirmation"
                                     type="password"
                                     name="password_confirmation"
-                                    value={data.password}
+                                    value={data.password_confirmation}
                                     className="mt-1 h-10 block w-full"
                                     onChange={e => setData('password_confirmation' , e.target.value)}
                                     />
@@ -117,7 +103,7 @@ export default function Create(auth) {
                                 >
                                   cancel
                                 </Link>
-                                <button className="bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600 text-sm h-10">
+                                <button className=" inline-block bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600 mr-2">
                                   submit
                                 </button>
                               </div>

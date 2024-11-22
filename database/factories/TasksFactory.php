@@ -24,8 +24,8 @@ class TasksFactory extends Factory
             'priority'=>fake()->randomElement(['low','medium','high']),
             'image_path'=>fake()->imageUrl(),
             'asseigned_user_id'=>1,
-            'created_by'=>1,
-            'updated_by'=>1,
+            'created_by'=>6,
+            'updated_by'=>6,
             'created_at' => time(),
             'updated_at'=>time()
         ];

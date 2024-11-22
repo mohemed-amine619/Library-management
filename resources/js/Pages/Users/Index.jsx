@@ -22,7 +22,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
     searchFieldChanged(name, e.target.value);
   };
 
-  const sortChanged = (name) => {
+  const sortedChange = (name) => {
     if (name === queryParams.sort_field) {
       if (queryParams.sort_direction === "asc") {
         queryParams.sort_direction = "desc";
@@ -79,7 +79,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
                         name="id"
                         sort_field={queryParams.sort_field}
                         sort_direction={queryParams.sort_direction}
-                        sortChanged={sortChanged}
+                        sortedChange={sortedChange}
                       >
                         ID
                       </TableHeading>
@@ -87,7 +87,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
                         name="name"
                         sort_field={queryParams.sort_field}
                         sort_direction={queryParams.sort_direction}
-                        sortChanged={sortChanged}
+                        sortedChange={sortedChange}
                       >
                         Name
                       </TableHeading>
@@ -96,7 +96,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
                         name="email"
                         sort_field={queryParams.sort_field}
                         sort_direction={queryParams.sort_direction}
-                        sortChanged={sortChanged}
+                        sortedChange={sortedChange}
                       >
                         Email
                       </TableHeading>
@@ -105,7 +105,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
                         name="created_at"
                         sort_field={queryParams.sort_field}
                         sort_direction={queryParams.sort_direction}
-                        sortChanged={sortChanged}
+                        sortedChange={sortedChange}
                       >
                         Create Date
                       </TableHeading>

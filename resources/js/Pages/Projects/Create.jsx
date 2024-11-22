@@ -119,7 +119,7 @@ export default function Create(auth) {
                                 >
                                   cancel
                                 </Link>
-                                <button className="bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600 text-sm h-10">
+                                <button className="bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600 mr-2">
                                   submit
                                 </button>
                               </div>

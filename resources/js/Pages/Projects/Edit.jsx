@@ -44,7 +44,6 @@ export default function Edit({auth , project}) {
                             onSubmit={onSubmit}
                             className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow-sm:rounded-lg"
                             >
-                              <pre>{JSON.stringify(data , undefined , 2)}</pre>
                               {project.image_path && (
                                 <div className="mb-4">
                                   <img src={project.image_path} alt=""  className="w-64"
