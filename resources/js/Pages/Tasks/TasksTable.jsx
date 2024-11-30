@@ -34,11 +34,15 @@ const sortedChange = (name) => {
   router.get(route('Task.index') , queryParams);
 }
     return(
+
       <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
       <div className="p-6 text-gray-900 dark:text-gray-100">
+
+
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400
            border-b-2 border-gray-500">
+
                <tr className="text-nowrap">
                    <TableHeading
                    name = "id"
@@ -56,7 +60,7 @@ const sortedChange = (name) => {
                       className="px-3 py-3">PROJECT NAME
                       </th>
                     )}
-                    
+
                    <TableHeading
                    name = "name"
                    sort_direction={queryParams.sort_direction}
@@ -88,6 +92,14 @@ const sortedChange = (name) => {
                    sortedChange={sortedChange}
                    >
                        DUE DATE
+                   </TableHeading>
+                   <TableHeading
+                   name = "priority"
+                   sort_direction={queryParams.sort_direction}
+                   sort_field={queryParams.sort_field}
+                   sortedChange={sortedChange}
+                   >
+                       TASK PRIORITY
                    </TableHeading>
                    <th
                     className="px-3 py-3">CREATED BY</th>
@@ -121,6 +133,7 @@ const sortedChange = (name) => {
                    <th className="px-3 py-3"></th>
                    <th className="px-3 py-3"></th>
                    <th className="px-3 py-3"></th>
+                   <th className="px-3 py-3"></th>
                </tr>
            </thead>
            <tbody>
@@ -137,7 +150,7 @@ const sortedChange = (name) => {
                               <td>{task.project.name}</td>
                             )
                           }
-                      
+
                           <td className='px-3 py-2'>{task.name}</td>
                           <td className='px-3 py-2'>
                            <span
@@ -148,12 +161,15 @@ const sortedChange = (name) => {
                            {TASK_STATUS_TEXT_MAP[task.status]}
                            </span>
                            </td>
+
                           <td className='px-3 py-2'>{task.created_at}</td>
                           <td className='px-3 py-2'>{task.due_date}</td>
+                          <td className='px-3 py-2'>{task.priority}</td>
                           <td className='px-3 py-2'>{task.created_by.name}</td>
+
                           <td className="px-3 py-2 text-nowrap">
                            <Link
-                             href='#'
+                             href={route('Task.edit',task.id)}
                              className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-1"
                            >
                              Edit

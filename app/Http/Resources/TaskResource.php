@@ -3,10 +3,12 @@
 namespace App\Http\Resources;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Taskresource extends JsonResource
 {
+    public static $wrap = false;
     /**
      * Transform the resource into an array.
      *
@@ -22,7 +24,7 @@ class Taskresource extends JsonResource
             'due_date' => (new Carbon($this->created_at))->format('Y-m-d'),
             'status' => $this->status,
             'priority' => $this -> priority,
-            'image_path' => $this->image_path,
+            'image_path' => $this->image_path ? Storage::url($this->image_path) : "",
             'project' => new ProjectResource($this->project),
             'assignedUser' => new UserResource($this->asseignedUser),
             'created_by' => new UserResource($this->createdby),
