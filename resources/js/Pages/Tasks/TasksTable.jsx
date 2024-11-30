@@ -33,6 +33,12 @@ const sortedChange = (name) => {
     }
   router.get(route('Task.index') , queryParams);
 }
+const deleteproject = (Task) => {
+  if(!window.confirm('Are you want to delete the Task')) {
+    return ;
+  }
+   router.delete(route("Task.destroy",Task.id));
+}
     return(
 
       <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
@@ -175,12 +181,11 @@ const sortedChange = (name) => {
                              Edit
                            </Link>
                            <button
-                             onClick={(e) => console.log(e.currentTarget)}
-                             className="font-medium text-red-600 dark:text-red-500 hover:underline mx-1"
-
-                           >
-                             Delete
-                           </button>
+                            onClick={(e)=> deleteproject(task)}
+                            className="font-medium text-red-600 dark:text-red-500 hover:underline"
+                          >
+                            Delete
+                          </button>
                          </td>
                        </tr>
                   ))

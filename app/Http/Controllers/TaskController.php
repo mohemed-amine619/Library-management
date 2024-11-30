@@ -143,10 +143,11 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tasks $tasks)
+    public function destroy(Tasks $Task)
     {
         //
         $name = $Task->name;
+
         $Task->delete();
         if ($Task->image_path) {
             Storage::disk('public')->deleteDirectory(dirname($Task->image_path));
