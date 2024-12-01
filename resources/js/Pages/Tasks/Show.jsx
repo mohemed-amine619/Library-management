@@ -1,8 +1,8 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head , Link } from "@inertiajs/react";
 import { TASK_STATUS_CLASS_MAP, TASK_STATUS_TEXT_MAP } from "@/Constants.js";
 import TasksTable from './../Tasks/TasksTable';
-export default function Show({auth , task , Tasks , QueryParams}) {
+export default function Show({auth , task}) {
   return(
     <AuthenticatedLayout
     user={auth}
@@ -17,6 +17,9 @@ export default function Show({auth , task , Tasks , QueryParams}) {
                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                        <div className="p-6 text-gray-900 dark:text-gray-100">
+                        <pre>
+                          {JSON.stringify(task , undefined , 2)}
+                        </pre>
                             <div>
                               <img src={task.image_path} alt="" className="w-full h-64 object-cover" />
                             </div>
@@ -46,6 +49,10 @@ export default function Show({auth , task , Tasks , QueryParams}) {
                                   <label htmlFor=""> CREATED BY</label>
                                   <p className="mt-1">{task.created_by.name}</p>
                                 </div>
+                                <div className="mt-4">
+                                  <label htmlFor=""> TASK PRIORITY</label>
+                                  <p className="mt-1">{task.priority}</p>
+                                </div>
                               </div>
                               <div>
                                 <div className="mt-4">
@@ -62,6 +69,20 @@ export default function Show({auth , task , Tasks , QueryParams}) {
                                  {task.updated_by.name}
                                   </p>
                                 </div>
+                                <div className="mt-4">
+                                  <label htmlFor=""> ASSEIGNED USER</label>
+                                  <p className="mt-1">
+                                 {task.assignedUser.name}
+                                  </p>
+                                </div>
+                                <div className="mt-4">
+                                  <label htmlFor=""> PROJECT NAME</label>
+                                  <p className="mt-1 cursor-pointer hover:underline">
+                                    <Link href={route("Project.show" , task.project.id)}>
+                                    {task.project.name}
+                                    </Link>
+                                  </p>
+                                </div>
                               </div>
                             </div>
                             <div className="mt-4">
@@ -74,16 +95,7 @@ export default function Show({auth , task , Tasks , QueryParams}) {
                    </div>
                </div>
           </div>
-          <div className="py-12">
-               <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                   <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-                       <div className="p-6 text-gray-900 dark:text-gray-100">
-                           {/* TABLE GOES HERE  */}
-                            <TasksTable tasks={Tasks} queryParams={QueryParams} hideTaskColumn = {true}/>
-                       </div>
-                   </div>
-               </div>
-          </div>
+
     </AuthenticatedLayout>
     )
 
