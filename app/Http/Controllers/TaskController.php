@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -78,27 +77,11 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tasks $tasks)
+    public function show(Tasks $Task)
     {
         //
-        $sortField = request('sort_field' , 'created_at');
-        $sortDirection = request('sort_direction' , 'desc');
-
-        $query = $Task -> tasks();
-        if(request('name')) {
-            $query->where("name","like","%".request("name") ."%");
-        }
-        if(request('status')) {
-            $query->where("status",request('status'));
-        }
-        $Tasks = $query
-                    ->orderBy($sortField , $sortDirection)
-                    -> paginate(10)
-                    ->onEachside(1);
         return inertia('Tasks/Show' , [
             'task' => new TaskResource($Task),
-            'Tasks' => TaskResource::collection($Tasks),
-            'QueryParams' => request() -> query() ?: null,
         ]);
     }
 
