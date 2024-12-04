@@ -27,7 +27,6 @@ export default function Index ({auth,Tasks, QueryParams , success}) {
                   <TasksTable tasks={Tasks}  queryParams={QueryParams}/>
                </div>
            </div>
-
     </AuthenticatedLayout>
     )
 }

@@ -176,7 +176,7 @@ const deleteproject = (Task) => {
                           <td className='px-3 py-2'>{task.due_date}</td>
                           <td className='px-3 py-2'>{task.priority}</td>
                           <td className='px-3 py-2'>{task.created_by.name}</td>
-
+                           
                           <td className="px-3 py-2 text-nowrap">
                            <Link
                              href={route('Task.edit',task.id)}
