@@ -1,7 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head , Link } from "@inertiajs/react";
 import { TASK_STATUS_CLASS_MAP, TASK_STATUS_TEXT_MAP } from "@/Constants.js";
-import TasksTable from './../Tasks/TasksTable';
 export default function Show({auth , task}) {
   return(
     <AuthenticatedLayout

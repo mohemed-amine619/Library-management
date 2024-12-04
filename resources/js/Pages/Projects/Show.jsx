@@ -1,7 +1,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import { PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP } from "@/Constants.js";
-import TasksTable from './../Tasks/TasksTable';
+import TasksTable  from '../Tasks/TasksTable';
 export default function Show({auth , project , Tasks , QueryParams}) {
   return(
     <AuthenticatedLayout
@@ -64,7 +64,7 @@ export default function Show({auth , project , Tasks , QueryParams}) {
                                 </div>
                               </div>
                             </div>
-                            <div className="mt-4"> 
+                            <div className="mt-4">
                            <label className="font-bold text-lg">
                             PROJECT DESCRIPTION
                            </label>

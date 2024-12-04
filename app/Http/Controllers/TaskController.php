@@ -122,7 +122,29 @@ class TaskController extends Controller
         $Task->update($data);
         return to_route("Task.index")->with('success' , "Task \" $Task->name \" was updated") ;
     }
+    public function myTasks()
+    {
+        $user = auth() -> user();
+        $query = Tasks::query()->where('asseigned_user_id' , $user->id);
+        $sortField = request('sort_field' , 'created_at');
+        $sortDirection = request('sort_direction' , 'desc');
+        if(request('name')) {
+            $query->where("name","like","%".request("name") ."%");
+        }
+        if(request('status')) {
+            $query->where("status",request('status'));
+        }
+        $tasks = $query
+                    ->orderBy($sortField , $sortDirection)
+                    -> paginate(30)
+                    ->onEachside(1);
+        return inertia("Tasks/Index" , [
+            "Tasks" => TaskResource::collection($tasks),
+            "queryParams" => request()->query() ?: null,
+            "success" => session('success')
+        ]);
 
+    }
     /**
      * Remove the specified resource from storage.
      */
